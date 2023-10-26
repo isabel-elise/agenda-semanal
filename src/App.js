@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ComponenteSemana from "./Componentes/ComponenteSemana";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1 className="App-name">Programação da semana</h1>
+        <button className="App-button">x</button>
+        <button className="App-button">+</button>
       </header>
+      <ComponenteSemana></ComponenteSemana>
     </div>
   );
 }
