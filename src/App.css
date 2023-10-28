@@ -1,5 +1,4 @@
 header {
-  background-color: cornflowerblue;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -9,6 +8,7 @@ header {
 }
 
 .App {
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,18 +26,19 @@ header {
 .Componente-Semana {
   margin-top: 10px;
   height: 34rem;
-  background-color: blue;
+  background-color: #a6adb3;
+  border-radius: 18px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .Componente-DiaDaSemana {
-  width: 12rem;
+  width: 12.5rem;
   height: 30rem;
   border-radius: 18px;
-  background-color: aquamarine;
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,7 +48,10 @@ header {
 .Componente-DiaDaSemana-dia {
   width: 80%;
   height: 10%;
-  background-color: violet;
+  font-size: large;
+  color: #f5f5f5;
+  background-color: #a6adb3;
+  border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -56,5 +60,6 @@ header {
 .Componente-DiaDaSemana-areaDeEventos {
   width: 80%;
   height: 80%;
-  background-color: aliceblue;
+  background-color: #ffffff;
+  border-radius: 12px;
 }
