@@ -34,8 +34,6 @@ function ComponenteSemana() {
     }
   }, []);
 
-  console.log();
-
   return (
     <div className="Componente-Semana">
       {DIAS_DA_SEMANA.map((dia) => (
