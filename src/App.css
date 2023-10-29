@@ -45,6 +45,44 @@ header {
   justify-content: space-around;
 }
 
+.ItemAgenda {
+  font-size: medium;
+  background-color: #ebe7e6;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  filter: drop-shadow(4px 4px 4px #c5ab9e);
+}
+
+.ItemAgenda-cabeçalho {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ItemAgenda-horario {
+  margin-top: 12px;
+  align-self: flex-end;
+}
+
+.Componente-Evento {
+  background-color: #ebe7e6;
+}
+
+.Componente-Evento-X {
+  color: #c5ab9e;
+}
+
+.Componente-Alarme {
+  background-color: #ebd9d0;
+}
+
+.Componente-Alarme-X {
+  color: #cd9172;
+}
+
 .Componente-DiaDaSemana-dia {
   width: 80%;
   height: 10%;
@@ -62,4 +100,5 @@ header {
   height: 80%;
   background-color: #ffffff;
   border-radius: 12px;
+  padding: 4px;
 }
