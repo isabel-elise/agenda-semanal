@@ -67,6 +67,10 @@ header {
   align-self: flex-end;
 }
 
+.ItemAgenda-X {
+  color: #c5ab9e;
+}
+
 .Componente-Evento {
   background-color: #ebe7e6;
 }

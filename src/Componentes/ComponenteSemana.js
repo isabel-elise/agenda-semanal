@@ -1,38 +1,15 @@
 import ComponenteDiaDaSemana from "./ComponenteDiaDaSemana.js";
-import { useState } from "react";
-import { useEffect } from "react";
-import { createContext } from "react";
-import Evento from "../Classes/Evento.js";
+import { useContext, useEffect } from "react";
+import { AgendaContext } from "../App.js";
 
 const DIAS_DA_SEMANA = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
-const agendaVazia = {
-  segunda: [],
-  terca: [],
-  quarta: [],
-  quinta: [],
-  sexta: [],
-  sabado: [],
-  domingo: [],
-};
-
-const AgendaContext = createContext();
-
 function ComponenteSemana() {
-  const [alarmesDaSemana, setAlarmesDaSemana] = useState({});
-  const [eventosDaSemana, setEventosDaSemana] = useState({});
+  const { alarmesDaSemana, eventosDaSemana } = useContext(AgendaContext);
 
   useEffect(() => {
-    localStorage.setItem("alarmesDaSemana", JSON.stringify(agendaVazia));
-    localStorage.setItem("eventosDaSemana", JSON.stringify(agendaVazia));
-
-    if (localStorage.getItem("alarmesDaSemana")) {
-      setAlarmesDaSemana(JSON.parse(localStorage.getItem("alarmesDaSemana")));
-    }
-    if (localStorage.getItem("eventosDaSemana")) {
-      setEventosDaSemana(JSON.parse(localStorage.getItem("eventosDaSemana")));
-    }
-  }, []);
+    console.log("Semana:", alarmesDaSemana);
+  }, [alarmesDaSemana, eventosDaSemana]);
 
   return (
     <div className="Componente-Semana">
@@ -66,5 +43,4 @@ function ComponenteSemana() {
   );
 }
 
-export { AgendaContext };
 export default ComponenteSemana;
