@@ -53,6 +53,18 @@ function ComponenteCriarItem({ onItemCriado }) {
                   <option value="Alarme">Alarme</option>
                   <option value="Evento">Evento</option>
                 </select>
+                <label htmlFor="selectDia">Dia:</label>
+                <select
+                  name="selectDia"
+                  value={diaDaSemana}
+                  onChange={(event) => setDiaDaSemana(event.target.value)}
+                >
+                  <option value="segunda">Segunda</option>
+                  <option value="terca">Terça</option>
+                  <option value="quarta">Quarta</option>
+                  <option value="quinta">Quinta</option>
+                  <option value="sexta">Sexta</option>
+                </select>
               </li>
               <li>
                 <label htmlFor="titulo">Título: </label>
@@ -75,8 +87,6 @@ function ComponenteCriarItem({ onItemCriado }) {
                       value={horarioInicio}
                       onChange={(event) => setHorarioInicio(event.target.value)}
                     />
-                  </li>
-                  <li>
                     <label htmlFor="horarioFim">Fim:</label>
                     <input
                       type="time"
@@ -99,22 +109,14 @@ function ComponenteCriarItem({ onItemCriado }) {
                   />
                 </li>
               )}
-              <li>
-                <label htmlFor="selectDia">Dia:</label>
-                <select
-                  name="selectDia"
-                  value={diaDaSemana}
-                  onChange={(event) => setDiaDaSemana(event.target.value)}
-                >
-                  <option value="segunda">Segunda</option>
-                  <option value="terca">Terça</option>
-                  <option value="quarta">Quarta</option>
-                  <option value="quinta">Quinta</option>
-                  <option value="sexta">Sexta</option>
-                </select>
-              </li>
+              <li></li>
             </ul>
-            <button onClick={criarItem}>Concluir</button>
+            <button
+              className="App-button BotaoMedio Botao-Concluir"
+              onClick={criarItem}
+            >
+              Concluir
+            </button>
           </form>
         </div>
       </div>
@@ -136,23 +138,13 @@ function adicionarEvento(evento) {
 
   let alarmeProgramadoDuranteEvento = false;
 
-  const partes1 = eventoHorarioInicio.split(":"); // Divide a string em partes: horas e minutos
-  const horas1 = parseInt(partes1[0], 10); // Converte as horas em um número inteiro
-  const minutos1 = parseInt(partes1[1], 10); // Converte os minutos em um número inteiro
-  const inicioMinutos = horas1 * 60 + minutos1;
-
-  const partes2 = eventoHorarioFim.split(":"); // Divide a string em partes: horas e minutos
-  const horas2 = parseInt(partes2[0], 10); // Converte as horas em um número inteiro
-  const minutos2 = parseInt(partes2[1], 10); // Converte os minutos em um número inteiro
-  const fimMinutos = horas2 * 60 + minutos2;
+  const inicioMinutos = converterHorarioParaMinutos(eventoHorarioInicio);
+  const fimMinutos = converterHorarioParaMinutos(eventoHorarioFim);
 
   for (const alarme of alarmesDoDia) {
     const alarmeHorario = alarme.horario;
 
-    const partes3 = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
-    const horas3 = parseInt(partes3[0], 10); // Converte as horas em um número inteiro
-    const minutos3 = parseInt(partes3[1], 10); // Converte os minutos em um número inteiro
-    const alarmeMinutos = horas3 * 60 + minutos3;
+    const alarmeMinutos = converterHorarioParaMinutos(alarmeHorario);
 
     if (alarmeMinutos >= inicioMinutos && alarmeMinutos <= fimMinutos) {
       alarmeProgramadoDuranteEvento = true;
@@ -162,7 +154,7 @@ function adicionarEvento(evento) {
 
   if (alarmeProgramadoDuranteEvento) {
     alert(
-      "Há um alarme programado para tocar durante o evento que você que adicionar"
+      "Há um alarme programado para tocar durante o evento que você quer adicionar!"
     );
   }
 
@@ -193,24 +185,14 @@ function adicionarAlarme(alarme) {
   const alarmeHorario = alarme.horario;
   let alarmeAdicionadoDuranteEvento = false;
 
-  const partes1 = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
-  const horas1 = parseInt(partes1[0], 10); // Converte as horas em um número inteiro
-  const minutos1 = parseInt(partes1[1], 10); // Converte os minutos em um número inteiro
-  const alarmeMinutos = horas1 * 60 + minutos1;
+  const alarmeMinutos = converterHorarioParaMinutos(alarmeHorario);
 
   for (const evento of eventosDoDia) {
     const eventoHorarioInicio = evento.horarioInicio;
     const eventoHorarioFim = evento.horarioFim;
 
-    const partes2 = eventoHorarioInicio.split(":"); // Divide a string em partes: horas e minutos
-    const horas2 = parseInt(partes2[0], 10); // Converte as horas em um número inteiro
-    const minutos2 = parseInt(partes2[1], 10); // Converte os minutos em um número inteiro
-    const inicioMinutos = horas2 * 60 + minutos2;
-
-    const partes3 = eventoHorarioFim.split(":"); // Divide a string em partes: horas e minutos
-    const horas3 = parseInt(partes3[0], 10); // Converte as horas em um número inteiro
-    const minutos3 = parseInt(partes3[1], 10); // Converte os minutos em um número inteiro
-    const fimMinutos = horas3 * 60 + minutos3;
+    const inicioMinutos = converterHorarioParaMinutos(eventoHorarioInicio);
+    const fimMinutos = converterHorarioParaMinutos(eventoHorarioFim);
 
     if (alarmeMinutos >= inicioMinutos && alarmeMinutos <= fimMinutos) {
       alarmeAdicionadoDuranteEvento = true;
@@ -236,4 +218,12 @@ function adicionarAlarme(alarme) {
   return alarmesAtualizados;
 }
 
+function converterHorarioParaMinutos(horario) {
+  const partes = horario.split(":"); // Divide a string em partes: horas e minutos
+  const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
+  const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
+  return horas * 60 + minutos; // Calcula o total de minutos
+}
+
+export { converterHorarioParaMinutos };
 export default ComponenteCriarItem;

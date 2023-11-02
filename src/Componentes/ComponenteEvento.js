@@ -9,7 +9,7 @@ function ComponenteEvento({ evento }) {
       <span className="ItemAgenda-cabeçalho">
         {evento.titulo}
         <span
-          className="App-button Componente-Evento-X"
+          className="App-button ItemAgenda-X Componente-Evento-X"
           onClick={() => onRemoverItem(removerEvento(evento), "Evento")}
         >
           X

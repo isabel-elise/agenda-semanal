@@ -7,10 +7,30 @@ h1 {
   font-weight: 400;
 }
 
-ul {
+h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+form li {
+  width: 90%;
+  display: flex;
 }
 
 form li + li {
@@ -18,36 +38,30 @@ form li + li {
 }
 
 label {
-  /* Uniform size & alignment */
   display: inline-block;
   width: 90px;
   text-align: right;
+  margin-right: 0.8em;
 }
 
 input,
-textarea {
-  /* To make sure that all text fields have the same font settings
-     By default, textareas have a monospace font */
-  font: 1em "Lexend" sans-serif;
-
-  /* Uniform text field size */
-  width: 300px;
+select {
+  font-size: 1em;
+  font-family: "Lexend", sans-serif;
+  border: 1px solid #a6adb3;
   box-sizing: border-box;
-
-  /* Match form field borders */
-  border: 1px solid #999;
 }
 
-input:focus,
-textarea:focus {
-  /* Additional highlight for focused elements */
-  border-color: #000;
+input {
+  width: 280px;
 }
 
-textarea {
-  /* Align multiline text fields with their labels */
-  vertical-align: top;
+input:focus {
+  border-color: #a6adb3;
+}
 
-  /* Provide space to type some text */
-  height: 5em;
+#horarioInicio,
+#horarioFim,
+#horario {
+  width: 5.8em;
 }

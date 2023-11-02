@@ -3,6 +3,8 @@ import { AgendaContext } from "../App.js";
 import ComponenteEvento from "./ComponenteEvento";
 import ComponenteAlarme from "./ComponenteAlarme";
 
+import { converterHorarioParaMinutos } from "./ComponenteCriarItem.js";
+
 function ComponenteDiaDaSemana({ diaDaSemana }) {
   const [agendaDoDia, setAgendaDoDia] = useState([]);
 
@@ -52,29 +54,18 @@ function ordenarPorHorarioDeInicio(lista) {
 
     if (a.horario) {
       const alarmeHorario = a.horario;
-      const partes = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
-      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
-      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
-      horarioA = horas * 60 + minutos;
+      horarioA = converterHorarioParaMinutos(alarmeHorario);
     } else {
       const eventoHorario = a.horarioInicio;
-      const partes = eventoHorario.split(":"); // Divide a string em partes: horas e minutos
-      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
-      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
-      horarioA = horas * 60 + minutos;
+      horarioA = converterHorarioParaMinutos(eventoHorario);
     }
+
     if (b.horario) {
       const alarmeHorario = b.horario;
-      const partes = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
-      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
-      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
-      horarioB = horas * 60 + minutos;
+      horarioB = converterHorarioParaMinutos(alarmeHorario);
     } else {
       const eventoHorario = b.horarioInicio;
-      const partes = eventoHorario.split(":"); // Divide a string em partes: horas e minutos
-      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
-      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
-      horarioB = horas * 60 + minutos;
+      horarioB = converterHorarioParaMinutos(eventoHorario);
     }
 
     return horarioA - horarioB;

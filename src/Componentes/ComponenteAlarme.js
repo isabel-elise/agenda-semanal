@@ -9,7 +9,7 @@ function ComponenteAlarme({ alarme }) {
       <span className="ItemAgenda-cabeçalho">
         {alarme.titulo}
         <button
-          className="App-button Componente-Alarme-X"
+          className="App-button ItemAgenda-X Componente-Alarme-X"
           onClick={() => onRemoverItem(removerAlarme(alarme), "Alarme")}
         >
           X
