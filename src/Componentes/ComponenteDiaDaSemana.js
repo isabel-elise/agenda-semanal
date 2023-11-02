@@ -10,7 +10,9 @@ function ComponenteDiaDaSemana({ diaDaSemana }) {
 
   useEffect(() => {
     if (alarmes !== undefined && eventos !== undefined) {
-      setAgendaDoDia([...alarmes, ...eventos]);
+      let listaDeItens = [...alarmes, ...eventos];
+      ordenarPorHorarioDeInicio(listaDeItens);
+      setAgendaDoDia(listaDeItens);
     }
   }, [alarmes, eventos]);
 
@@ -42,6 +44,41 @@ function ComponenteDiaDaSemana({ diaDaSemana }) {
       <span className="Componente-DiaDaSemana-dia">{diaDaSemana}</span>
     </div>
   );
+}
+
+function ordenarPorHorarioDeInicio(lista) {
+  lista.sort(function (a, b) {
+    let horarioA, horarioB;
+
+    if (a.horario) {
+      const alarmeHorario = a.horario;
+      const partes = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
+      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
+      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
+      horarioA = horas * 60 + minutos;
+    } else {
+      const eventoHorario = a.horarioInicio;
+      const partes = eventoHorario.split(":"); // Divide a string em partes: horas e minutos
+      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
+      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
+      horarioA = horas * 60 + minutos;
+    }
+    if (b.horario) {
+      const alarmeHorario = b.horario;
+      const partes = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
+      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
+      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
+      horarioB = horas * 60 + minutos;
+    } else {
+      const eventoHorario = b.horarioInicio;
+      const partes = eventoHorario.split(":"); // Divide a string em partes: horas e minutos
+      const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
+      const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
+      horarioB = horas * 60 + minutos;
+    }
+
+    return horarioA - horarioB;
+  });
 }
 
 export default ComponenteDiaDaSemana;

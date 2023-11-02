@@ -136,17 +136,27 @@ function adicionarEvento(evento) {
 
   let alarmeProgramadoDuranteEvento = false;
 
-  for (const alarme of alarmesDoDia) {
-    if (alarme instanceof Alarme) {
-      let alarmeHorario = alarme.horario;
+  const partes1 = eventoHorarioInicio.split(":"); // Divide a string em partes: horas e minutos
+  const horas1 = parseInt(partes1[0], 10); // Converte as horas em um número inteiro
+  const minutos1 = parseInt(partes1[1], 10); // Converte os minutos em um número inteiro
+  const inicioMinutos = horas1 * 60 + minutos1;
 
-      if (
-        alarmeHorario >= eventoHorarioInicio &&
-        alarmeHorario <= eventoHorarioFim
-      ) {
-        alarmeProgramadoDuranteEvento = true;
-        break; // Um alarme foi adicionado durante um evento, não é necessário continuar a verificação.
-      }
+  const partes2 = eventoHorarioFim.split(":"); // Divide a string em partes: horas e minutos
+  const horas2 = parseInt(partes2[0], 10); // Converte as horas em um número inteiro
+  const minutos2 = parseInt(partes2[1], 10); // Converte os minutos em um número inteiro
+  const fimMinutos = horas2 * 60 + minutos2;
+
+  for (const alarme of alarmesDoDia) {
+    const alarmeHorario = alarme.horario;
+
+    const partes3 = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
+    const horas3 = parseInt(partes3[0], 10); // Converte as horas em um número inteiro
+    const minutos3 = parseInt(partes3[1], 10); // Converte os minutos em um número inteiro
+    const alarmeMinutos = horas3 * 60 + minutos3;
+
+    if (alarmeMinutos >= inicioMinutos && alarmeMinutos <= fimMinutos) {
+      alarmeProgramadoDuranteEvento = true;
+      break; // Um alarme foi adicionado durante um evento, não é necessário continuar a verificação.
     }
   }
 
@@ -183,18 +193,28 @@ function adicionarAlarme(alarme) {
   const alarmeHorario = alarme.horario;
   let alarmeAdicionadoDuranteEvento = false;
 
-  for (const evento of eventosDoDia) {
-    if (evento instanceof Evento) {
-      const eventoHorarioInicio = evento.horarioInicio;
-      const eventoHorarioFim = evento.horarioFim;
+  const partes1 = alarmeHorario.split(":"); // Divide a string em partes: horas e minutos
+  const horas1 = parseInt(partes1[0], 10); // Converte as horas em um número inteiro
+  const minutos1 = parseInt(partes1[1], 10); // Converte os minutos em um número inteiro
+  const alarmeMinutos = horas1 * 60 + minutos1;
 
-      if (
-        alarmeHorario >= eventoHorarioInicio &&
-        alarmeHorario <= eventoHorarioFim
-      ) {
-        alarmeAdicionadoDuranteEvento = true;
-        break; // Um alarme foi adicionado durante um evento, não é necessário continuar a verificação.
-      }
+  for (const evento of eventosDoDia) {
+    const eventoHorarioInicio = evento.horarioInicio;
+    const eventoHorarioFim = evento.horarioFim;
+
+    const partes2 = eventoHorarioInicio.split(":"); // Divide a string em partes: horas e minutos
+    const horas2 = parseInt(partes2[0], 10); // Converte as horas em um número inteiro
+    const minutos2 = parseInt(partes2[1], 10); // Converte os minutos em um número inteiro
+    const inicioMinutos = horas2 * 60 + minutos2;
+
+    const partes3 = eventoHorarioFim.split(":"); // Divide a string em partes: horas e minutos
+    const horas3 = parseInt(partes3[0], 10); // Converte as horas em um número inteiro
+    const minutos3 = parseInt(partes3[1], 10); // Converte os minutos em um número inteiro
+    const fimMinutos = horas3 * 60 + minutos3;
+
+    if (alarmeMinutos >= inicioMinutos && alarmeMinutos <= fimMinutos) {
+      alarmeAdicionadoDuranteEvento = true;
+      break; // Um alarme foi adicionado durante um evento, não é necessário continuar a verificação.
     }
   }
 
