@@ -53,10 +53,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(alarmesDaSemana);
-  }, [alarmesDaSemana]);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -88,6 +84,7 @@ function App() {
             setAgendaDaSemana(agenda, tipo);
             setCriandoItem(false);
           }}
+          onDesistirDaCriacao={() => setCriandoItem(false)}
         ></ComponenteCriarItem>
       )}
     </div>

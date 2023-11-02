@@ -2,7 +2,7 @@ import { useState } from "react";
 import Alarme from "../Classes/Alarme";
 import Evento from "../Classes/Evento";
 
-function ComponenteCriarItem({ onItemCriado }) {
+function ComponenteCriarItem({ onItemCriado, onDesistirDaCriacao }) {
   const [tipo, setTipo] = useState("Evento");
   const [titulo, setTitulo] = useState("");
   const [horarioInicio, setHorarioInicio] = useState("00:00");
@@ -38,87 +38,89 @@ function ComponenteCriarItem({ onItemCriado }) {
 
   return (
     <div className="Modal">
-      <div className="Modal-overlay">
-        <div className="Modal-conteudo">
-          <h2>Criar novo item na agenda</h2>
-          <form action="/my-handling-htmlForm-page" method="post">
-            <ul>
-              <li>
-                <label htmlFor="selectTipo">Tipo: </label>
-                <select
-                  name="selectTipo"
-                  value={tipo}
-                  onChange={(event) => setTipo(event.target.value)}
-                >
-                  <option value="Alarme">Alarme</option>
-                  <option value="Evento">Evento</option>
-                </select>
-                <label htmlFor="selectDia">Dia:</label>
-                <select
-                  name="selectDia"
-                  value={diaDaSemana}
-                  onChange={(event) => setDiaDaSemana(event.target.value)}
-                >
-                  <option value="segunda">Segunda</option>
-                  <option value="terca">Terça</option>
-                  <option value="quarta">Quarta</option>
-                  <option value="quinta">Quinta</option>
-                  <option value="sexta">Sexta</option>
-                </select>
-              </li>
-              <li>
-                <label htmlFor="titulo">Título: </label>
-                <input
-                  type="text"
-                  id="titulo"
-                  name="titulo"
-                  value={titulo}
-                  onChange={(event) => setTitulo(event.target.value)}
-                />
-              </li>
-              {tipo === "Evento" ? (
-                <>
-                  <li>
-                    <label htmlFor="horarioInicio">Início:</label>
-                    <input
-                      type="time"
-                      id="horarioInicio"
-                      name="horarioInicio"
-                      value={horarioInicio}
-                      onChange={(event) => setHorarioInicio(event.target.value)}
-                    />
-                    <label htmlFor="horarioFim">Fim:</label>
-                    <input
-                      type="time"
-                      id="horarioFim"
-                      name="horarioFim"
-                      value={horarioFim}
-                      onChange={(event) => setHorarioFim(event.target.value)}
-                    />
-                  </li>
-                </>
-              ) : (
+      <div
+        className="Modal-overlay"
+        onClick={() => onDesistirDaCriacao()}
+      ></div>
+      <div className="Modal-conteudo">
+        <h2>Criar novo item na agenda</h2>
+        <form action="/my-handling-htmlForm-page" method="post">
+          <ul>
+            <li>
+              <label htmlFor="selectTipo">Tipo: </label>
+              <select
+                name="selectTipo"
+                value={tipo}
+                onChange={(event) => setTipo(event.target.value)}
+              >
+                <option value="Alarme">Alarme</option>
+                <option value="Evento">Evento</option>
+              </select>
+              <label htmlFor="selectDia">Dia:</label>
+              <select
+                name="selectDia"
+                value={diaDaSemana}
+                onChange={(event) => setDiaDaSemana(event.target.value)}
+              >
+                <option value="segunda">Segunda</option>
+                <option value="terca">Terça</option>
+                <option value="quarta">Quarta</option>
+                <option value="quinta">Quinta</option>
+                <option value="sexta">Sexta</option>
+              </select>
+            </li>
+            <li>
+              <label htmlFor="titulo">Título: </label>
+              <input
+                type="text"
+                id="titulo"
+                name="titulo"
+                value={titulo}
+                onChange={(event) => setTitulo(event.target.value)}
+              />
+            </li>
+            {tipo === "Evento" ? (
+              <>
                 <li>
-                  <label htmlFor="horario">Horário:</label>
+                  <label htmlFor="horarioInicio">Início:</label>
                   <input
                     type="time"
-                    id="horario"
-                    name="horario"
-                    value={horario}
-                    onChange={(event) => setHorario(event.target.value)}
+                    id="horarioInicio"
+                    name="horarioInicio"
+                    value={horarioInicio}
+                    onChange={(event) => setHorarioInicio(event.target.value)}
+                  />
+                  <label htmlFor="horarioFim">Fim:</label>
+                  <input
+                    type="time"
+                    id="horarioFim"
+                    name="horarioFim"
+                    value={horarioFim}
+                    onChange={(event) => setHorarioFim(event.target.value)}
                   />
                 </li>
-              )}
-              <li></li>
-            </ul>
-            <button
-              className="App-button BotaoMedio Botao-Concluir"
-              onClick={criarItem}
-            >
-              Concluir
-            </button>
-          </form>
-        </div>
+              </>
+            ) : (
+              <li>
+                <label htmlFor="horario">Horário:</label>
+                <input
+                  type="time"
+                  id="horario"
+                  name="horario"
+                  value={horario}
+                  onChange={(event) => setHorario(event.target.value)}
+                />
+              </li>
+            )}
+            <li></li>
+          </ul>
+          <button
+            className="App-button BotaoMedio Botao-Concluir"
+            onClick={criarItem}
+          >
+            Concluir
+          </button>
+        </form>
       </div>
     </div>
   );
