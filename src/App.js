@@ -32,6 +32,14 @@ function App() {
     }
   }
 
+  function limparAgenda() {
+    localStorage.setItem("alarmesDaSemana", JSON.stringify(agendaVazia));
+    localStorage.setItem("eventosDaSemana", JSON.stringify(agendaVazia));
+
+    setAgendaDaSemana(agendaVazia, "Alarme");
+    setAgendaDaSemana(agendaVazia, "Evento");
+  }
+
   useEffect(() => {
     if (localStorage.getItem("alarmesDaSemana")) {
       setAlarmesDaSemana(JSON.parse(localStorage.getItem("alarmesDaSemana")));
@@ -55,7 +63,10 @@ function App() {
         <IconeCalendario></IconeCalendario>
         <h1 className="App-name">Programação da semana</h1>
         <span className="ÁreaDeBotões">
-          <button className="App-button BotaoMedio Botao-LimparAgenda">
+          <button
+            className="App-button BotaoMedio Botao-LimparAgenda"
+            onClick={() => limparAgenda()}
+          >
             <IconeRemover></IconeRemover>
           </button>
           <button
