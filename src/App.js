@@ -24,7 +24,6 @@ function App() {
 
   function setAgendaDaSemana(agenda, tipo) {
     if (tipo === "Alarme") {
-      console.log("Modificando Alarmes");
       setAlarmesDaSemana(agenda);
     }
     if (tipo === "Evento") {
@@ -44,12 +43,12 @@ function App() {
     if (localStorage.getItem("alarmesDaSemana")) {
       setAlarmesDaSemana(JSON.parse(localStorage.getItem("alarmesDaSemana")));
     } else {
-      localStorage.setItem("alarmesDaSemana", JSON.stringify(alarmesDaSemana));
+      localStorage.setItem("alarmesDaSemana", JSON.stringify(agendaVazia));
     }
     if (localStorage.getItem("eventosDaSemana")) {
       setEventosDaSemana(JSON.parse(localStorage.getItem("eventosDaSemana")));
     } else {
-      localStorage.setItem("eventosDaSemana", JSON.stringify(eventosDaSemana));
+      localStorage.setItem("eventosDaSemana", JSON.stringify(agendaVazia));
     }
   }, []);
 

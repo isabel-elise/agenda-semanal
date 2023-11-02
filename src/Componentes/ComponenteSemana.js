@@ -10,7 +10,9 @@ function ComponenteSemana() {
 
   useEffect(() => {
     let indiceDia = new Date().getDay();
-    setDiaDeHoje(indiceDia < 5 ? DIAS_DA_SEMANA[(indiceDia - 1) % 5] : "");
+    setDiaDeHoje(
+      indiceDia < 6 && indiceDia > 0 ? DIAS_DA_SEMANA[indiceDia - 1] : ""
+    );
   }, [alarmesDaSemana, eventosDaSemana]);
 
   return (

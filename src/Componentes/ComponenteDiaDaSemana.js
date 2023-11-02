@@ -10,8 +10,6 @@ function ComponenteDiaDaSemana({ diaDaSemana, diaAtual }) {
 
   const { alarmes, eventos } = useContext(AgendaContext);
 
-  //const estiloDiaAtual = ;
-
   useEffect(() => {
     if (alarmes !== undefined && eventos !== undefined) {
       let listaDeItens = [...alarmes, ...eventos];
@@ -40,7 +38,6 @@ function ComponenteDiaDaSemana({ diaDaSemana, diaAtual }) {
               ></ComponenteAlarme>
             );
           } else {
-            console.log(itemAgenda);
             return null;
           }
         })}
