@@ -2,9 +2,9 @@ import "./App.css";
 import { useState, useEffect, createContext } from "react";
 import ComponenteSemana from "./Componentes/ComponenteSemana";
 import ComponenteCriarItem from "./Componentes/ComponenteCriarItem";
-
-import Alarme from "./Classes/Alarme";
-import Evento from "./Classes/Evento";
+import IconeCalendario from "./Classes/Icones/IconeCalendario";
+import IconeRemover from "./Classes/Icones/IconeRemover";
+import IconeAdicionar from "./Classes/Icones/IconeAdicionar";
 
 const agendaVazia = {
   segunda: [],
@@ -52,11 +52,19 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <IconeCalendario></IconeCalendario>
         <h1 className="App-name">Programação da semana</h1>
-        <button className="App-button">x</button>
-        <button className="App-button" onClick={() => setCriandoItem(true)}>
-          +
-        </button>
+        <span className="ÁreaDeBotões">
+          <button className="App-button BotaoMedio Botao-LimparAgenda">
+            <IconeRemover></IconeRemover>
+          </button>
+          <button
+            className="App-button BotaoMedio Botao-CriarItem"
+            onClick={() => setCriandoItem(true)}
+          >
+            <IconeAdicionar></IconeAdicionar>
+          </button>
+        </span>
       </header>
       <AgendaContext.Provider value={{ alarmesDaSemana, eventosDaSemana }}>
         <ItemContext.Provider value={setAgendaDaSemana}>

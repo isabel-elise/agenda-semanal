@@ -8,36 +8,16 @@ function ComponenteAlarme({ alarme }) {
     <div className="Componente-Alarme ItemAgenda">
       <span className="ItemAgenda-cabeçalho">
         {alarme.titulo}
-        <span
-          className="Componente-Alarme-X"
+        <button
+          className="App-button Componente-Alarme-X"
           onClick={() => onRemoverItem(removerAlarme(alarme), "Alarme")}
         >
           X
-        </span>
+        </button>
       </span>
       <span className="ItemAgenda-horario">{alarme.horario}</span>
     </div>
   );
-}
-
-export default ComponenteAlarme;
-
-function removerEvento(id) {
-  const eventosDaSemanaArmazenados = JSON.parse(
-    localStorage.getItem("eventosDaSemana")
-  );
-
-  localStorage.setItem(
-    "eventosDaSemana",
-    JSON.stringify(
-      eventosDaSemanaArmazenados.filter((evento) => evento.id !== id)
-    )
-  );
-
-  const eventosAtualizados = JSON.parse(
-    localStorage.getItem("eventosDaSemana")
-  );
-  return eventosAtualizados;
 }
 
 function removerAlarme(alarme) {
@@ -49,12 +29,6 @@ function removerAlarme(alarme) {
     alarme.diaSemana
   ].filter((alarmeDoDia) => alarmeDoDia.id !== alarme.id);
 
-  console.log(
-    alarmesDaSemanaArmazenados[alarme.diaSemana].filter(
-      (alarmeDoDia) => alarmeDoDia.id !== alarme.id
-    )
-  );
-
   localStorage.setItem(
     "alarmesDaSemana",
     JSON.stringify(alarmesDaSemanaArmazenados)
@@ -65,3 +39,5 @@ function removerAlarme(alarme) {
   );
   return alarmesAtualizados;
 }
+
+export default ComponenteAlarme;

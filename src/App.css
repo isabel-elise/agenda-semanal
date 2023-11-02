@@ -1,31 +1,61 @@
-header {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  flex: 1;
-}
-
 .App {
+  margin-bottom: 30px;
   padding: 0 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.App-header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 1;
+  overflow: visible;
+}
+
 .App-name {
-  width: 90%;
+  width: 70vw;
+  font-size: 2em;
+  margin-left: 10px;
 }
 
 .App-button {
-  width: fit-content;
-  height: fit-content;
+  all: unset;
+  outline: revert;
+  cursor: pointer;
+}
+
+.ÁreaDeBotões {
+  width: 10vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.BotaoMedio {
+  line-height: 0;
+  color: white;
+  padding: 1em 1em;
+  border-radius: 12px;
+  margin: 0 10px;
+}
+
+.Botao-LimparAgenda {
+  background-color: #ebd9d0;
+}
+
+.Botao-CriarItem {
+  background-color: #a6adb3;
 }
 
 .Componente-Semana {
   margin-top: 10px;
-  height: 34rem;
+  height: fit-content;
+  padding: 2em 0;
   background-color: #a6adb3;
   border-radius: 18px;
   display: flex;
@@ -35,8 +65,8 @@ header {
 }
 
 .Componente-DiaDaSemana {
-  width: 12.5rem;
-  height: 30rem;
+  width: 14vw;
+  height: 70vh;
   border-radius: 18px;
   background-color: #f5f5f5;
   display: flex;
@@ -50,10 +80,10 @@ header {
   background-color: #ebe7e6;
   border-radius: 8px;
   padding: 8px;
-  margin: 12px 0;
+  margin: 12px 8px;
   display: flex;
   flex-direction: column;
-  filter: drop-shadow(4px 4px 4px #c5ab9e);
+  filter: drop-shadow(3px 3px 2px #c5ab9e);
 }
 
 .ItemAgenda-cabeçalho {
@@ -65,10 +95,6 @@ header {
 .ItemAgenda-horario {
   margin-top: 12px;
   align-self: flex-end;
-}
-
-.ItemAgenda-X {
-  color: #c5ab9e;
 }
 
 .Componente-Evento {
@@ -100,11 +126,10 @@ header {
 }
 
 .Componente-DiaDaSemana-areaDeEventos {
-  width: 80%;
+  width: 85%;
   height: 80%;
   background-color: #ffffff;
   border-radius: 12px;
-  padding: 4px;
 }
 
 .Modal,
