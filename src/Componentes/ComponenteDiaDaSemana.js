@@ -5,10 +5,12 @@ import ComponenteAlarme from "./ComponenteAlarme";
 
 import { converterHorarioParaMinutos } from "./ComponenteCriarItem.js";
 
-function ComponenteDiaDaSemana({ diaDaSemana }) {
+function ComponenteDiaDaSemana({ diaDaSemana, diaAtual }) {
   const [agendaDoDia, setAgendaDoDia] = useState([]);
 
   const { alarmes, eventos } = useContext(AgendaContext);
+
+  //const estiloDiaAtual = ;
 
   useEffect(() => {
     if (alarmes !== undefined && eventos !== undefined) {
@@ -43,7 +45,12 @@ function ComponenteDiaDaSemana({ diaDaSemana }) {
           }
         })}
       </div>
-      <span className="Componente-DiaDaSemana-dia">{diaDaSemana}</span>
+      <span
+        className="Componente-DiaDaSemana-dia"
+        style={diaAtual ? { backgroundColor: "#C9D1D3", color: "#748C96" } : {}}
+      >
+        {diaDaSemana}
+      </span>
     </div>
   );
 }

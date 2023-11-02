@@ -1,14 +1,16 @@
 import ComponenteDiaDaSemana from "./ComponenteDiaDaSemana.js";
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AgendaContext } from "../App.js";
 
 const DIAS_DA_SEMANA = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
 function ComponenteSemana() {
   const { alarmesDaSemana, eventosDaSemana } = useContext(AgendaContext);
+  const [diaDeHoje, setDiaDeHoje] = useState("");
 
   useEffect(() => {
-    console.log("Semana:", alarmesDaSemana);
+    let indiceDia = new Date().getDay();
+    setDiaDeHoje(indiceDia < 5 ? DIAS_DA_SEMANA[(indiceDia - 1) % 5] : "");
   }, [alarmesDaSemana, eventosDaSemana]);
 
   return (
@@ -35,6 +37,7 @@ function ComponenteSemana() {
         >
           <ComponenteDiaDaSemana
             diaDaSemana={dia}
+            diaAtual={dia === diaDeHoje}
             key={dia}
           ></ComponenteDiaDaSemana>
         </AgendaContext.Provider>
