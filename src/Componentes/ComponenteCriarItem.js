@@ -182,22 +182,15 @@ function adicionarEvento(evento) {
   return eventosAtualizados;
 }
 
-function adicionarAlarme(alarme) {
-  const alarmesDaSemanaArmazenados = JSON.parse(
-    localStorage.getItem("alarmesDaSemana")
-  );
-  const eventosDaSemanaArmazenados = JSON.parse(
-    localStorage.getItem("eventosDaSemana")
-  );
+function verificarAlarmeEmEvento(alarme, eventos){
 
-  const eventosDoDia = eventosDaSemanaArmazenados[alarme.diaSemana];
 
   const alarmeHorario = alarme.horario;
   let alarmeAdicionadoDuranteEvento = false;
 
   const alarmeMinutos = converterHorarioParaMinutos(alarmeHorario);
 
-  for (const evento of eventosDoDia) {
+  for (const evento of eventos) {
     const eventoHorarioInicio = evento.horarioInicio;
     const eventoHorarioFim = evento.horarioFim;
 
@@ -209,6 +202,22 @@ function adicionarAlarme(alarme) {
       break; // Um alarme foi adicionado durante um evento, não é necessário continuar a verificação.
     }
   }
+	
+  return alarmeAdicionadoDuranteEvento;
+}
+
+function adicionarAlarme(alarme) {
+  const alarmesDaSemanaArmazenados = JSON.parse(
+    localStorage.getItem("alarmesDaSemana")
+  );
+  const eventosDaSemanaArmazenados = JSON.parse(
+    localStorage.getItem("eventosDaSemana")
+  );
+
+  const eventosDoDia = eventosDaSemanaArmazenados[alarme.diaSemana];
+
+  let alarmeAdicionadoDuranteEvento = verificarAlarmeEmEvento(alarme, eventosDoDia);
+
 
   if (alarmeAdicionadoDuranteEvento) {
     alert("Um alarme foi adicionado durante um evento!");
