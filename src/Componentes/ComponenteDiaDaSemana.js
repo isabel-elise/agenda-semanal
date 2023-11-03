@@ -56,7 +56,10 @@ function ordenarPorHorarioDeInicio(lista) {
   lista.sort(function (a, b) {
     let horarioA, horarioB;
 
-    if (a.horario) {
+    const aEhAlarme = a.horario;
+    const bEhAlarme = b.horario;
+
+    if (aEhAlarme) {
       const alarmeHorario = a.horario;
       horarioA = converterHorarioParaMinutos(alarmeHorario);
     } else {
@@ -64,7 +67,7 @@ function ordenarPorHorarioDeInicio(lista) {
       horarioA = converterHorarioParaMinutos(eventoHorario);
     }
 
-    if (b.horario) {
+    if (bEhAlarme) {
       const alarmeHorario = b.horario;
       horarioB = converterHorarioParaMinutos(alarmeHorario);
     } else {
