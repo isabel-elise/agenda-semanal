@@ -126,8 +126,7 @@ function ComponenteCriarItem({ onItemCriado, onDesistirDaCriacao }) {
   );
 }
 
-function verificarEventoSobreAlarme(evento, alarmes){
-
+export function verificarEventoSobreAlarme(evento, alarmes) {
   const eventoHorarioInicio = evento.horarioInicio;
   const eventoHorarioFim = evento.horarioFim;
 
@@ -146,9 +145,8 @@ function verificarEventoSobreAlarme(evento, alarmes){
       break; // Um alarme foi adicionado durante um evento, não é necessário continuar a verificação.
     }
   }
-  
-  return alarmeProgramadoDuranteEvento;
 
+  return alarmeProgramadoDuranteEvento;
 }
 
 function adicionarEvento(evento) {
@@ -160,7 +158,10 @@ function adicionarEvento(evento) {
   );
   const alarmesDoDia = alarmesDaSemanaArmazenados[evento.diaSemana];
 
-  let alarmeProgramadoDuranteEvento = verificarEventoSobreAlarme(evento, alarmesDoDia);
+  let alarmeProgramadoDuranteEvento = verificarEventoSobreAlarme(
+    evento,
+    alarmesDoDia
+  );
 
   if (alarmeProgramadoDuranteEvento) {
     alert(
@@ -182,9 +183,7 @@ function adicionarEvento(evento) {
   return eventosAtualizados;
 }
 
-function verificarAlarmeEmEvento(alarme, eventos){
-
-
+export function verificarAlarmeEmEvento(alarme, eventos) {
   const alarmeHorario = alarme.horario;
   let alarmeAdicionadoDuranteEvento = false;
 
@@ -202,7 +201,7 @@ function verificarAlarmeEmEvento(alarme, eventos){
       break; // Um alarme foi adicionado durante um evento, não é necessário continuar a verificação.
     }
   }
-	
+
   return alarmeAdicionadoDuranteEvento;
 }
 
@@ -216,8 +215,10 @@ function adicionarAlarme(alarme) {
 
   const eventosDoDia = eventosDaSemanaArmazenados[alarme.diaSemana];
 
-  let alarmeAdicionadoDuranteEvento = verificarAlarmeEmEvento(alarme, eventosDoDia);
-
+  let alarmeAdicionadoDuranteEvento = verificarAlarmeEmEvento(
+    alarme,
+    eventosDoDia
+  );
 
   if (alarmeAdicionadoDuranteEvento) {
     alert("Um alarme foi adicionado durante um evento!");
@@ -237,12 +238,11 @@ function adicionarAlarme(alarme) {
   return alarmesAtualizados;
 }
 
-function converterHorarioParaMinutos(horario) {
+export function converterHorarioParaMinutos(horario) {
   const partes = horario.split(":"); // Divide a string em partes: horas e minutos
   const horas = parseInt(partes[0], 10); // Converte as horas em um número inteiro
   const minutos = parseInt(partes[1], 10); // Converte os minutos em um número inteiro
   return horas * 60 + minutos; // Calcula o total de minutos
 }
 
-export { converterHorarioParaMinutos };
 export default ComponenteCriarItem;
