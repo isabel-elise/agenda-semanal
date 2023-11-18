@@ -52,7 +52,7 @@ function ComponenteDiaDaSemana({ diaDaSemana, diaAtual }) {
   );
 }
 
-function ordenarPorHorarioDeInicio(lista) {
+export function ordenarPorHorarioDeInicio(lista) {
   lista.sort(function (a, b) {
     let horarioA, horarioB;
 
