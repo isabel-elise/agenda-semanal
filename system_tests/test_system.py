@@ -28,7 +28,7 @@ def add_event(driver, dia, nome, hora_inicio, hora_fim):
     begin_field.send_keys(hora_inicio)
 
     end_field = driver.find_element(By.NAME, 'horarioFim')
-    end_field.send_keys("2145")
+    end_field.send_keys("21455")
 
     create_event =  driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/button").click()
 
