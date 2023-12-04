@@ -21,7 +21,7 @@ class TestSystem:
     def test_create_event(self):
             
         self.driver.maximize_window()
-        self.driver.get("http://localhost:3000/")
+        self.driver.get(self.get_url())
 
         dia = "Quarta"
         nome = "Festa de Aniversário"
