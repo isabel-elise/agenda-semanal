@@ -58,7 +58,7 @@ class TestSystem:
         assert time_event == "18:30 - 21:45"
         assert day_event == "Quarta"
 
-    def test_remove_event(url):
+    def test_remove_event(self):
     
         self.driver.maximize_window()
         self.driver.get("http://localhost:3000/")
@@ -95,3 +95,64 @@ class TestSystem:
         title_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[1]").text
         time_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[2]").text
         day_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/span").text
+
+    def test_alert_appears_when_setting_alarm_over_event(self):
+
+        driver.maximize_window()
+        driver.get("http://localhost:3000/")
+
+        dia = "Quarta"
+        nome = "Festa de Aniversário"
+        hora_inicio = "18:30"
+        hora_fim = "21:45"
+        
+        element = self.driver.find_element(By.XPATH, "/html/body/div/div/header/span/button[2]")
+        element.click()
+        
+        select_type = self.driver.find_element(By.NAME, 'selectTipo')
+        select_event = Select(select_type)
+        select_event.select_by_visible_text("Evento")
+    
+        select_day = self.driver.find_element(By.NAME, 'selectDia')
+        select_week_day = Select(select_day)
+        select_week_day.select_by_visible_text(dia)
+    
+        title_field = self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/ul/li[2]/input")
+        title_field.send_keys(nome)
+    
+        begin_field = self.driver.find_element(By.NAME, 'horarioInicio')
+        begin_field.send_keys(hora_inicio)
+    
+        end_field = self.driver.find_element(By.NAME, 'horarioFim')
+        end_field.send_keys(hora_fim)
+    
+        create_event =  self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/button").click()
+
+        dia = "Quarta"
+        nome = "Jogo de futebol"
+        horario = "19:30"
+        
+        element = self.driver.find_element(By.XPATH, "/html/body/div/div/header/span/button[2]")
+        element.click()
+    
+        select_type = self.driver.find_element(By.NAME, 'selectTipo')
+        select_event = Select(select_type)
+        select_event.select_by_visible_text("Alarme")
+    
+        select_day = self.driver.find_element(By.NAME, 'selectDia')
+        select_week_day = Select(select_day)
+        select_week_day.select_by_visible_text(dia)
+    
+        title_field = self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/ul/li[2]/input")
+        title_field.send_keys(nome)
+    
+        begin_field = self.driver.find_element(By.NAME, 'horario')
+        begin_field.send_keys(horario)
+    
+        create_alarm =  self.driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/button").click()
+        
+        alert = self.driver.switch_to.alert
+        alert_text = alert.text
+        alert.accept()
+        
+        assert alert_text == "Um alarme foi adicionado durante um evento!"
