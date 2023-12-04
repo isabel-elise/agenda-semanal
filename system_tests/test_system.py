@@ -28,7 +28,7 @@ def add_event(driver, dia, nome, hora_inicio, hora_fim):
     begin_field.send_keys(hora_inicio)
 
     end_field = driver.find_element(By.NAME, 'horarioFim')
-    end_field.send_keys("21455")
+    end_field.send_keys(hora_fim)
 
     create_event =  driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/button").click()
 
@@ -74,7 +74,7 @@ class TestSystem:
         self.driver.maximize_window()
         self.driver.get("http://localhost:3000/")
 
-        add_event(self.driver, "Quarta", "Festa de Aniversário", "18:30", "21:45")
+        add_event(self.driver, "Quarta", "Festa de Aniversário", "09:30", "11:30")
         
         title_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[1]").text
         time_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[2]").text
@@ -89,7 +89,7 @@ class TestSystem:
         self.driver.maximize_window()
         self.driver.get("http://localhost:3000/")
             
-        add_event(self.driver, "Quarta", "Festa de Aniversário", "18:30", "21:45")
+        add_event(self.driver, "Quarta", "Festa de Aniversário", "09:30", "11:30")
         
         remove_field = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[1]/span").click()
 
@@ -103,8 +103,8 @@ class TestSystem:
         self.driver.maximize_window()
         self.driver.get("http://localhost:3000/")
 
-        add_event(self.driver, "Quarta", "Festa de Aniversário", "18:30", "21:45")
-        add_alarm(self.driver, "Quarta", "Jogo de futebol", "19:30")
+        add_event(self.driver, "Quarta", "Festa de Aniversário", "09:30", "11:30")
+        add_alarm(self.driver, "Quarta", "Jogo de futebol", "10:30")
         
         alert = self.driver.switch_to.alert
         alert_text = alert.text
