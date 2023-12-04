@@ -60,7 +60,7 @@ def add_alarm(driver, dia, nome, horario):
 
     create_alarm =  driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/button").click()
 
-
+@pytest.mark.usefixtures("setup")
 class TestSystem:
     
     def test_form_appears_proprely(self):
