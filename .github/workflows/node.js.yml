@@ -44,4 +44,4 @@ jobs:
       run: pip install requests webdriver-manager selenium pytest
 
     - name: Run the PytTest script
-        run: pytest system_tests/ -rA
+      run: pytest system_tests/ -rA
