@@ -1,8 +1,12 @@
-import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver import ActionChains
 from selenium.common.exceptions import NoSuchElementException
+
+import pytest
+import time
+import numpy as np
+from PIL import Image
 
 def add_event(driver, dia, nome, hora_inicio, hora_fim):
     
