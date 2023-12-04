@@ -26,3 +26,20 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+
+    - run: npm install serve -g
+    - run: npx serve -s build & echo "System running on http://localhost:3000/"
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install software
+      run: sudo apt-get install -y chromium-browser
+
+    - name: Install the necessary packages
+      run: pip install requests webdriver-manager selenium pytest
+
+    - name: Run the PytTest script
+        run: pytest system_tests/ -rA
