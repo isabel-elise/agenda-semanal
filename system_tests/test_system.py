@@ -142,4 +142,4 @@ class TestSystem:
         final_screenshot = np.array(Image.open("clean_board.png"))
         pixels_difference = np.sum(initial_screenshot - final_screenshot)
         
-        assert pixels_difference > threshold
+        assert pixels_difference < threshold
