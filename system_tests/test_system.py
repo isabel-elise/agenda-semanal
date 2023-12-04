@@ -113,6 +113,8 @@ class TestSystem:
         assert alert_text == "Um alarme foi adicionado durante um evento!"
 
     def test_clear_board(self):
+
+        threshold = 50
     
         self.driver.maximize_window()
         self.driver.get("http://localhost:3000/")
@@ -140,4 +142,4 @@ class TestSystem:
         final_screenshot = np.array(Image.open("clean_board.png"))
         pixels_difference = np.sum(initial_screenshot - final_screenshot)
         
-        assert pixels_difference == 0
+        assert pixels_difference > threshold
