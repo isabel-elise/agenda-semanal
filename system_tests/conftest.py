@@ -9,13 +9,6 @@ def setup(request):
 
     chrome_options = Options()
     options = [
-    "--headless",
-    "--disable-gpu",
-    "--window-size=1920,1200",
-    "--ignore-certificate-errors",
-    "--disable-extensions",
-    "--no-sandbox",
-    "--disable-dev-shm-usage",
     "--disable-notifications",
     "--disable-popup-blocking",
     "--disable-web-security"
