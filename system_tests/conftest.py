@@ -25,7 +25,8 @@ def setup(request):
 
     request.cls.driver = webdriver.Chrome(options=chrome_options)
 
-    url = "http://localhost:3000/"
+    def get_url():
+        return "http://localhost:3000/"
 
     yield request.cls.driver
     request.cls.driver.close()
