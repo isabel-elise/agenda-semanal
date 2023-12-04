@@ -4,7 +4,7 @@ import pytest
 class TestSystem:
     def test_form_appears_proprely(self):
         
-        driver.get(url)
+        self.driver.get(url)
         element = driver.find_element(By.XPATH, "/html/body/div/div/header/span/button[2]")
         element.click()
         
