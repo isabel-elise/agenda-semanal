@@ -7,7 +7,7 @@ from selenium.webdriver import ActionChains
 class TestSystem:
     def test_form_appears_proprely(self):
         
-        self.driver.get("http://localhost:3000/")
+        self.driver.get("http://127.0.0.1:3000/")
         element = self.driver.find_element(By.XPATH, "/html/body/div/div/header/span/button[2]")
         element.click()
         
