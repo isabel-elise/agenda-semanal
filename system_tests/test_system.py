@@ -24,14 +24,11 @@ def add_event(driver, dia, nome, hora_inicio, hora_fim):
     title_field = driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/ul/li[2]/input")
     title_field.send_keys(nome)
 
-    time.sleep(2)
-
     begin_field = driver.find_element(By.NAME, 'horarioInicio')
     begin_field.send_keys(hora_inicio)
 
-    time.sleep(2)
-
     end_field = driver.find_element(By.NAME, 'horarioFim')
+    end_field.clear()
     end_field.send_keys(hora_fim)
 
     create_event =  driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/button").click()
@@ -51,8 +48,6 @@ def add_alarm(driver, dia, nome, horario):
 
     title_field = driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[2]/form/ul/li[2]/input")
     title_field.send_keys(nome)
-
-    time.sleep(2)
 
     begin_field = driver.find_element(By.NAME, 'horario')
     begin_field.send_keys(horario)
