@@ -39,8 +39,8 @@ jobs:
 
     - run: sudo apt-get update
 
-    - name: Install software
-      run: sudo apt-get install -y chromium-browser
+    - name: Use software
+      uses: browser-actions/setup-chrome@v1
 
     - name: Install the necessary packages
       run: pip install requests webdriver-manager selenium pytest
