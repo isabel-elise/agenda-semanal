@@ -35,7 +35,7 @@ jobs:
       run: npx serve -s build & echo "System running on http://localhost:3000/"
 
     - if: "${{matrix.os == 'windows-latest'}}"
-      run: start { npx serve -s build } 
+      run: start /b "npx serve -s build"
 
     - name: Set up Python
       uses: actions/setup-python@v2
