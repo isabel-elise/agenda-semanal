@@ -81,7 +81,7 @@ class TestSystem:
         day_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/span").text
         
         assert title_event.split("\n")[0] == "Festa de Aniversário"
-        assert time_event == "18:30 - 21:45"
+        assert time_event == "09:30 - 11:30"
         assert day_event == "Quarta"
 
     def test_remove_event(self):
