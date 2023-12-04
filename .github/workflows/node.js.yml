@@ -32,10 +32,10 @@ jobs:
     - run: npm install serve -g
 
     - if: "${{matrix.os != 'windows-latest'}}"
-      run: npx serve -s build & echo "System running on http://localhost:3000/"
+      run: npm start -- --port 3000 & echo "System running on http://localhost:3000/"
 
     - if: "${{matrix.os == 'windows-latest'}}"
-      run: Start-Process -WindowStyle Minimized -FilePath npx -ArgumentList "serve -s build"
+      run: Start-Process -WindowStyle Minimized -FilePath npm -ArgumentList "start -- --port 3000"
 
     - name: Set up Python
       uses: actions/setup-python@v2
