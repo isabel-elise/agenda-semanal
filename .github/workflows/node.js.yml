@@ -30,7 +30,7 @@ jobs:
       run: npm test
 
     - run: npm install serve -g
-    - run: npx serve -s build & echo "System running on http://localhost:3000/"
+    - run: npx serve -s build -p 3000 & echo "System running on http://localhost:3000/"
 
     - name: Set up Python
       uses: actions/setup-python@v2
