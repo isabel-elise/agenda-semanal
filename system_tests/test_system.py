@@ -2,6 +2,7 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver import ActionChains
+from selenium.common.exceptions import NoSuchElementException
 
 def add_event(driver, dia, nome, hora_inicio, hora_fim):
     
@@ -88,7 +89,7 @@ class TestSystem:
         
         remove_field = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[1]/span").click()
 
-        with pytest.raises(selenium.common.exceptions.NoSuchElementException):
+        with pytest.raises(NoSuchElementException):
             title_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[1]").text
             time_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/div/div/span[2]").text
             day_event = self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[3]/span").text
@@ -107,29 +108,29 @@ class TestSystem:
         
         assert alert_text == "Um alarme foi adicionado durante um evento!"
 
-    def test_clear_board(url):
+    def test_clear_board(self):
     
-        driver.maximize_window()
-        driver.get("http://localhost:3000/")
+        self.driver.maximize_window()
+        self.driver.get("http://localhost:3000/")
         
         time.sleep(2)
-        driver.save_screenshot("initial_page.png")
+        self.driver.save_screenshot("initial_page.png")
             
-        add_event(driver, "Segunda", "Aula", "17:00", "18:40")
-        add_event(driver, "Terça", "Academia", "20:00", "21:30")
-        add_event(driver, "Quarta", "Festa de Aniversário", "18:30", "21:45")
-        add_event(driver, "Quinta", "Aula", "9:35", "11:05")
+        add_event(self.driver, "Segunda", "Aula", "17:00", "18:40")
+        add_event(self.driver, "Terça", "Academia", "20:00", "21:30")
+        add_event(self.driver, "Quarta", "Festa de Aniversário", "18:30", "21:45")
+        add_event(self.driver, "Quinta", "Aula", "9:35", "11:05")
         
-        add_alarm(driver, "Terça", "Acordar", "8:00")
-        add_alarm(driver, "Quinta", "Acordar", "8:00")
-        add_alarm(driver, "Quarta", "Ver jogo de futebol", "22:00")
-        add_alarm(driver, "Sexta", "Terminar código", "16:00")
+        add_alarm(self.driver, "Terça", "Acordar", "8:00")
+        add_alarm(self.driver, "Quinta", "Acordar", "8:00")
+        add_alarm(self.driver, "Quarta", "Ver jogo de futebol", "22:00")
+        add_alarm(self.driver, "Sexta", "Terminar código", "16:00")
         
-        clean_board = driver.find_element(By.XPATH, "/html/body/div/div/header/span/button[1]").click()
+        clean_board = self.driver.find_element(By.XPATH, "/html/body/div/div/header/span/button[1]").click()
     
-        ActionChains(driver).move_by_offset( 20, 0).perform()
+        ActionChains(self.driver).move_by_offset( 20, 0).perform()
         
-        driver.save_screenshot("clean_board.png")
+        self.driver.save_screenshot("clean_board.png")
         
         initial_screenshot = np.array(Image.open("initial_page.png"))
         final_screenshot = np.array(Image.open("clean_board.png"))
